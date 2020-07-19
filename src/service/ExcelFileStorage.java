@@ -32,11 +32,11 @@ public class ExcelFileStorage {
 		createExcel(blog);
 	
 	}
-//	public List<Blog> getAllBlogs() {
-//		//System.out.println("Getting list");
-//		return readExcel();
-//	}
-//	
+	public List<Blog> getAllBlogs() {
+		//System.out.println("Getting list");
+		return readExcel();
+	}
+	
 	private void createExcel(Blog blog) throws IOException {
 		System.out.println("Creating an excel");
 	      
@@ -66,21 +66,21 @@ public class ExcelFileStorage {
   
         dateCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd-mm-yyyy"));
 
-       // int rowNum = sheet.getLastRowNum();
-        int rowNum=0;
+        int rowNum = sheet.getLastRowNum();
+         rowNum=0;
         for(Blog blogpost: list) {
         	
             Row row = sheet.createRow(++rowNum);
             row.createCell(0).setCellValue(blog.getBlogTitle());
             row.createCell(1).setCellValue(blog.getBlogDescription());
             row.createCell(2).setCellValue(blog.getDate().toString());
-  /*          
+         
             Cell dateofpost = row.createCell(2);
             dateofpost.setCellValue(blog.getBlog_date());
-           // dateofpost.setCellValue(blog.getBlog_date());
+           dateofpost.setCellValue(blog.getBlog_date());
             dateofpost.setCellStyle(dateCellStyle);
 
-*/
+
         }
 
         for(int i = 0; i < columns.length; i++) {
@@ -98,49 +98,49 @@ public class ExcelFileStorage {
     }
 	
 	
-//	  public List<Blog> readExcel() {
-//	  
-//	  System.out.println("Reading from excel file");
-//	  System.out.println("Opening the file"); String excelFilePath ="C://Users//vinot//Downloads//blog.xlsx";
-//	  
-//	  try { 
-//		  FileInputStream inputStream = new FileInputStream(excelFilePath);
-//	  
-//	  Workbook workbook = new XSSFWorkbook(inputStream); 
-//	  Sheet firstSheet =  workbook.getSheetAt(0); 
-//	  Iterator<Row> rowIterator = firstSheet.iterator();
-//	  int count = 0; 
-//	  String blog_title=""; 
-//	  String blog_content="";
-//	  rowIterator.next(); // skip the header row
-//	  
-//	  while (rowIterator.hasNext()) { //System.out.println("Entering into row");
-//	  Row nextRow = rowIterator.next(); 
-//	  Iterator<Cell> cellIterator = nextRow.cellIterator();
-//	  
-//	  while (cellIterator.hasNext()) {
-//		  Cell nextCell = cellIterator.next();
-//		  int columnIndex = nextCell.getColumnIndex();
-//		  switch (columnIndex) { 
-//		  case 0:
-//			  blog_title = nextCell.getStringCellValue(); 
-//			  System.out.println(blog_title);
-//			   break; 
-//			   case 1: blog_content = nextCell.getStringCellValue();
-//			    System.out.println(blog_content); 
-//			    break; 
-//			    } 
-//		  } 
-//	  } 
-//	  list.add(new Blog(blog_title,blog_content,LocalDate.now()));
-//	  workbook.close(); 
-//	  } 
-//	  catch (IOException ex1)
-//	  {
-//	  System.out.println("Error reading file"); 
-//	  ex1.printStackTrace(); }
-//	  return list; 
-//	  }
-//	 
+	  public List<Blog> readExcel() {
+	  
+	  System.out.println("Reading from excel file");
+  System.out.println("Opening the file"); String excelFilePath ="C://Users//vinot//Downloads//blog.xlsx";
+	  
+	  try { 
+		  FileInputStream inputStream = new FileInputStream(excelFilePath);
+	  
+	  Workbook workbook = new XSSFWorkbook(inputStream); 
+	  Sheet firstSheet =  workbook.getSheetAt(0); 
+	  Iterator<Row> rowIterator = firstSheet.iterator();
+	  int count = 0; 
+	  String blog_title=""; 
+	  String blog_content="";
+	  rowIterator.next(); // skip the header row
+	  
+	  while (rowIterator.hasNext()) { //System.out.println("Entering into row");
+	  Row nextRow = rowIterator.next(); 
+	  Iterator<Cell> cellIterator = nextRow.cellIterator();
+	  
+	  while (cellIterator.hasNext()) {
+		  Cell nextCell = cellIterator.next();
+		  int columnIndex = nextCell.getColumnIndex();
+		  switch (columnIndex) { 
+		  case 0:
+			  blog_title = nextCell.getStringCellValue(); 
+			  System.out.println(blog_title);
+			   break; 
+			   case 1: blog_content = nextCell.getStringCellValue();
+			    System.out.println(blog_content); 
+			    break; 
+			    } 
+		  } 
+	  } 
+	  list.add(new Blog(blog_title,blog_content,LocalDate.now()));
+	  workbook.close(); 
+	  } 
+	  catch (IOException ex1)
+	  {
+	  System.out.println("Error reading file"); 
+	  ex1.printStackTrace(); }
+  return list; 
+  }
+	 
 }
 

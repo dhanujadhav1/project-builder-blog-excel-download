@@ -6,6 +6,7 @@ public class Blog {
 	private String blogTitle;
 	private String blogDescription;
 	private LocalDate date;
+	private double date1;
 	
 	public Blog(String blogTitle, String blogDescription, LocalDate date) {
 		
@@ -27,6 +28,9 @@ public class Blog {
 	}
 	public LocalDate getDate() {
 		return date;
+	}
+	public double getBlog_date() {
+		return date1;
 	}
 	public void setDate(LocalDate date) {
 		this.date = date;
